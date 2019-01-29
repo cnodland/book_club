@@ -1,3 +1,7 @@
+Author.destroy_all
+Book.destroy_all
+
+
 martin = Author.create(name: "George R.R. Martin")
 book_1 = martin.books.create(title: "A Game of Thrones", pages: 694, year: 1996)
 book_2 = martin.books.create(title: "A Clash of Kings", pages: 761, year: 1998)
