@@ -92,14 +92,55 @@ RSpec.describe 'As a visitor', type: :feature do
       user_4 = User.create(username:"User4")
 
       review_1 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_2 = Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_3 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_4 = Review.create(title:"Bad review for book 4",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_2 = Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_2, user: user_1 )
+      review_3 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 5, book: book_3, user: user_1 )
+      review_4 = Review.create(title:"Bad review for book 4",review_text: "Loved it", rating: 5, book: book_4, user: user_1 )
 
-      review_5 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_6 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_7 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      review_8 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_5 = Review.create(title:"Bad review for book 5",review_text: "hated", rating: 1, book: book_5, user: user_1 )
+      review_6 = Review.create(title:"Bad review for book 6",review_text: "hated", rating: 1, book: book_6, user: user_1 )
+      review_7 = Review.create(title:"Bad review for book 7",review_text: "hated", rating: 1, book: book_7, user: user_1 )
+      review_8 = Review.create(title:"Bad review for book 8",review_text: "Loved it", rating: 2, book: book_8, user: user_1 )
+
+      review_9 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_2 )
+      review_10 = Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 4, book: book_2, user: user_2 )
+      review_11= Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 5, book: book_3, user: user_2 )
+      review_12 = Review.create(title:"Good review for book 4",review_text: "Loved it", rating:4 , book: book_4, user: user_2 )
+
+
+      review_13 = Review.create(title:"Bad review for book 5",review_text: "hated it", rating: 1, book: book_5, user: user_2 )
+      review_14 = Review.create(title:"Bad review for book 6",review_text: "hated it", rating: 1, book: book_6, user: user_2 )
+      review_15 = Review.create(title:"Bad review for book 7",review_text: "hated it", rating: 1, book: book_7, user: user_2 )
+      review_16 = Review.create(title:"Bad review for book 8",review_text: "hated it", rating: 2, book: book_8, user: user_2 )
+
+      review_17 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_3 )
+      review_18 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 5, book: book_3, user: user_3 )
+      review_19 = Review.create(title:"Bad review for book 5",review_text: "hated it", rating: 1, book: book_5, user: user_3 )
+      review_20 = Review.create(title:"Bad review for book 7",review_text: "hated it", rating: 1, book: book_7, user: user_3 )
+      review_21 = Review.create(title:"Bad review for book 8",review_text: "hated it", rating: 2, book: book_8, user: user_3 )
+
+      review_22= Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_2, user: user_4 )
+      review_23 = Review.create(title:"Good review for book 4",review_text: "Loved it", rating: 4, book: book_4, user: user_4 )
+      review_24 = Review.create(title:"Bad review for book 6",review_text: "hated it", rating: 1, book: book_6, user: user_4 )
+
+      visit books_path
+
+      within '#statistics' do
+        within '#top-3' do
+          expect(page).to have_content(book_1.title)
+          expect(page).to have_content(book_2.title)
+          expect(page).to have_content(book_3.title)
+        end
+        within '#bottom-3' do
+          expect(page).to have_content(book_5.title)
+          expect(page).to have_content(book_6.title)
+          expect(page).to have_content(book_7.title)
+        end
+        within '#top-reviewers' do
+          expect(page).to have_content(user_1.username)
+          expect(page).to have_content(user_2.username)
+          expect(page).to have_content(user_3.username)
+        end 
+      end
 
 
     end
