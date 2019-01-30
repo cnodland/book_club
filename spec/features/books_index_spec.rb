@@ -23,7 +23,7 @@ RSpec.describe 'As a visitor', type: :feature do
       book_4 = Book.create(title: "Book 4", page_count: 178, year: 2010, authors: [martin, coelho])
 
       visit '/books'
-      
+
 
       within "#book-#{book_1.id}" do
         expect(page).to have_content (book_1.title)
@@ -55,5 +55,10 @@ RSpec.describe 'As a visitor', type: :feature do
         expect(page).to have_content (book_4.authors.last.name)
       end
     end
+
+    it 'shows the average rating and total ratings next to title'
+    coelho= Author.create(name:'Paulo Coelho')
+    book_1 = coelho.books.create(title:"The Alchemist", page_count: 200, year: 1988)
+    good_review = book_1.reviews.create(rating: 5)
   end
 end
