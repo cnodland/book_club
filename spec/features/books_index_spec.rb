@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'As a visitor', type: :feature do
+  #add before
+  # before :each do
   describe 'When I go to books/index' do
     it 'can see all books' do
       coelho= Author.create(name:'Paulo Coelho')
@@ -68,6 +70,37 @@ RSpec.describe 'As a visitor', type: :feature do
         expect(page).to have_content ("Rating: 3")
         expect(page).to have_content ("Number of reviews: 2")
       end
+
+    end
+
+    it 'shows statistics about all books' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+      book_4 = coelho.books.create(title:"Decent Book", page_count: 150, year: 2000)
+
+      martin = Author.create(name:"Martin")
+      book_5 = martin.books.create(title:"Bad Book", page_count: 1000, year: 2017)
+      book_6 = martin.books.create(title:"Pretty bad Book", page_count: 1000, year: 2017)
+      book_7 = martin.books.create(title:"Pretty bad book 3", page_count: 1000, year: 2017)
+      book_8 = martin.books.create(title:"Okayish book", page_count: 1000, year: 2017)
+
+      user_1 = User.create(username:"User1")
+      user_2 = User.create(username:"User2")
+      user_3 = User.create(username:"User3")
+      user_4 = User.create(username:"User4")
+
+      review_1 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_2 = Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_3 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_4 = Review.create(title:"Bad review for book 4",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+
+      review_5 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_6 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_7 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review_8 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+
 
     end
 

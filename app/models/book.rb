@@ -8,6 +8,13 @@ class Book < ApplicationRecord
   validates_presence_of :year
 
   def average_rating
-    Review.average(:rating) 
+    if reviews.count >= 1
+      reviews.average(:rating).round(2)
+    else
+      0
+    end
   end
+
+  # method to order ratings
+  #only needs to be tested on model method, not necessarily feature
 end
