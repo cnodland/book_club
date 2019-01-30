@@ -23,7 +23,7 @@ RSpec.describe 'As a visitor', type: :feature do
       book_4 = Book.create(title: "Book 4", page_count: 178, year: 2010, authors: [martin, coelho])
 
       visit '/books'
-      save_and_open_page
+      
 
       within "#book-#{book_1.id}" do
         expect(page).to have_content (book_1.title)
