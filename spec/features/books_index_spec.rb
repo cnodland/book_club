@@ -123,24 +123,29 @@ RSpec.describe 'As a visitor', type: :feature do
       review_24 = Review.create(title:"Bad review for book 6",review_text: "hated it", rating: 1, book: book_6, user: user_4 )
 
       visit books_path
+      # within '#statistics' do
+      #   expect(page).to have_content("Books statistics")
+      # end
 
-      within '#statistics' do
         within '#top-3' do
+          expect(page).to have_content("Best three books:")
           expect(page).to have_content(book_1.title)
           expect(page).to have_content(book_2.title)
           expect(page).to have_content(book_3.title)
         end
         within '#bottom-3' do
+          expect(page).to have_content("Worst three books:")
           expect(page).to have_content(book_5.title)
           expect(page).to have_content(book_6.title)
           expect(page).to have_content(book_7.title)
         end
         within '#top-reviewers' do
+          expect(page).to have_content("Top Reviewers:")
           expect(page).to have_content(user_1.username)
           expect(page).to have_content(user_2.username)
           expect(page).to have_content(user_3.username)
-        end 
-      end
+        end
+
 
 
     end

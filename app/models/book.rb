@@ -15,6 +15,12 @@ class Book < ApplicationRecord
     end
   end
 
-  # method to order ratings
-  #only needs to be tested on model method, not necessarily feature
+  def self.sort_avg_rating(order)
+    Book.joins(:reviews)
+    .select("books.*, avg(reviews.rating) as avg_rating")
+    .group(:id)
+    .order("avg_rating #{order}" )
+    .limit(3)
+
+  end
 end
