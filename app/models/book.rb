@@ -15,12 +15,20 @@ class Book < ApplicationRecord
     end
   end
 
-  def self.sort_avg_rating(order)
+  def self.sort_avg_rating(order, limit = 50)
     Book.joins(:reviews)
     .select("books.*, avg(reviews.rating) as avg_rating")
     .group(:id)
     .order("avg_rating #{order}" )
-    .limit(3)
+    .limit(limit)
+  end
+
+  def self.sort_num_reviews(order)
+    Book.joins(:reviews)
+    .select("books.*, count(reviews) as num_reviews")
+    .group(:id)
+    .order("num_reviews #{order}")
+    .limit(50)
 
   end
 end
