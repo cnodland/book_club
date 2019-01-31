@@ -23,10 +23,15 @@
     <h4>Top Reviewers:</h4>
     <ul>
       <% @top_three_reviewers.each do |user| %>
-      <li><%= user.username %> </li> 
+      <li><%= user.username %> </li>
       <% end %>
     </ul>
   </article>
+</section>
+
+<section>
+  <button type="button" name="sort by worst to best"></button>
+
 </section>
 
 <% @books.each do |book| %>

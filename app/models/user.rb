@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates_presence_of :username
 
   def self.top_three_reviewers
-    User.joins(:reviews)
+     User.joins(:reviews)
     .select("users.*, count(reviews.user_id) as num_reviews")
     .group(:id)
     .order("num_reviews desc")
