@@ -166,7 +166,7 @@ RSpec.describe 'As a visitor', type: :feature do
       Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
 
       visit books_path
-      click_on 'sort by worst to best'
+      click_button 'Sort by worst to best'
 
       expect(page.all('.book')[0]).to have_content("Good Book 3")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
@@ -176,9 +176,9 @@ RSpec.describe 'As a visitor', type: :feature do
 
     it 'can sort books by average rating in descending order' do
       coelho= Author.create(name:'Paulo Coelho')
-      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
-      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
       book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
 
       user_1 = User.create(username:"User1")
 
@@ -190,7 +190,7 @@ RSpec.describe 'As a visitor', type: :feature do
       Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
 
       visit books_path
-      click_on 'sort by best to worst'
+      click_on 'Sort by best to worst'
 
       expect(page.all('.book')[0]).to have_content("Good Book 1")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
@@ -200,13 +200,13 @@ RSpec.describe 'As a visitor', type: :feature do
 
     it 'can sort books by number of pages ascending' do
       coelho= Author.create(name:'Paulo Coelho')
-      book_1 = coelho.books.create(title:"Good Book 1", page_count: 100, year: 1988)
-      book_2 = coelho.books.create(title:"Good Book 2", page_count: 200, year: 2000)
       book_3 = coelho.books.create(title:"Good Book 3", page_count: 300, year: 2000)
-
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 200, year: 2000)
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 100, year: 1988)
       visit books_path
-      click_on 'sort by pages lowest to highest'
+      click_button "Sort by Pages Ascending"
 
+      expect(page).to have_current_path(books_path(sort: "pages_asc"))
       expect(page.all('.book')[0]).to have_content("Good Book 1")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
       expect(page.all('.book')[2]).to have_content("Good Book 3")
@@ -219,8 +219,9 @@ RSpec.describe 'As a visitor', type: :feature do
       book_3 = coelho.books.create(title:"Good Book 3", page_count: 300, year: 2000)
 
       visit books_path
-      click_on 'sort by pages highet to lowest'
+      click_button "Sort by Pages Descending"
 
+      expect(page).to have_current_path(books_path(sort: "pages_desc"))
       expect(page.all('.book')[0]).to have_content("Good Book 3")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
       expect(page.all('.book')[2]).to have_content("Good Book 1")
@@ -228,9 +229,9 @@ RSpec.describe 'As a visitor', type: :feature do
 
     it 'can sort books by most reviewed to least' do
       coelho= Author.create(name:'Paulo Coelho')
-      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
-      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
       book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 147, year: 2000)
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
 
       user_1 = User.create(username:"User1")
 
@@ -242,7 +243,7 @@ RSpec.describe 'As a visitor', type: :feature do
       Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
 
       visit books_path
-      click_on 'sort by most reviewed'
+      click_button 'Sort by most reviewed'
 
       expect(page.all('.book')[0]).to have_content("Good Book 1")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
@@ -265,13 +266,35 @@ RSpec.describe 'As a visitor', type: :feature do
       Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
 
       visit books_path
-      click_on 'sort by least reviewed'
+      click_button 'Sort by least reviewed'
 
       expect(page.all('.book')[0]).to have_content("Good Book 3")
       expect(page.all('.book')[1]).to have_content("Good Book 2")
       expect(page.all('.book')[2]).to have_content("Good Book 1")
     end
 
+    it 'can return to index page with a button' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+      visit books_path
+      click_button 'Sort by least reviewed'
+      click_button 'Take me home'
+
+      expect(page.all('.book')[0]).to_not have_content("Good Book 3")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to_not have_content("Good Book 1")
+    end
 
 
   end

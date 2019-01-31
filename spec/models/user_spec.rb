@@ -60,9 +60,9 @@ RSpec.describe User, type: :model do
         review_10 = Review.create!(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_1, user: user_4 )
         review_11 = Review.create!(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_1, user: user_4 )
 
-        actual = User.top_three_reviewers
-        
-        expect(actual.length).to eq(3)
+        expected = [user_1, user_2, user_3]
+
+        expect(User.top_three_reviewers).to eq(expected)
       end
     end
   end

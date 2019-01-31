@@ -7,7 +7,7 @@ class User < ApplicationRecord
      User.joins(:reviews)
     .select("users.*, count(reviews.user_id) as num_reviews")
     .group(:id)
-    .order("num_reviews desc")
+    .order("num_reviews desc, users.username asc")
     .limit(3)
 
   end
