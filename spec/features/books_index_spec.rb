@@ -150,6 +150,129 @@ RSpec.describe 'As a visitor', type: :feature do
 
     end
 
+    it 'can sort books by average rating in ascending order' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+
+      visit books_path
+      click_on 'sort by worst to best'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 3")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 1")
+
+    end
+
+    it 'can sort books by average rating in descending order' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+
+      visit books_path
+      click_on 'sort by best to worst'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 1")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 3")
+
+    end
+
+    it 'can sort books by number of pages ascending' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 100, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 200, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 300, year: 2000)
+
+      visit books_path
+      click_on 'sort by pages lowest to highest'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 1")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 3")
+    end
+
+    it 'can sort books by number of pages ascending' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 100, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 200, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 300, year: 2000)
+
+      visit books_path
+      click_on 'sort by pages highet to lowest'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 3")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 1")
+    end
+
+    it 'can sort books by most reviewed to least' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+
+      visit books_path
+      click_on 'sort by most reviewed'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 1")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 3")
+    end
+
+    it 'can sort books by least reviewed to most' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+
+      visit books_path
+      click_on 'sort by least reviewed'
+
+      expect(page.all('.book')[0]).to have_content("Good Book 3")
+      expect(page.all('.book')[1]).to have_content("Good Book 2")
+      expect(page.all('.book')[2]).to have_content("Good Book 1")
+    end
+
+
 
   end
 end
