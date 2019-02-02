@@ -29,6 +29,11 @@ class Book < ApplicationRecord
     .group(:id)
     .order("num_reviews #{order}")
     .limit(50)
+  end
 
+  def sort_three_reviews(order)
+    Review.where(book: self)
+    .order(rating: order)
+    .limit(3)
   end
 end
