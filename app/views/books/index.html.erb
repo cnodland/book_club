@@ -42,7 +42,8 @@
 
 <% @books.each do |book| %>
 <section id="book-<%= book.id %>" class="book">
-  <h3 id="title-<%= book.id %>"><b>Title:</b> <%= book.title %> <b>Rating:</b> <%=book.average_rating %>
+  <h3 id="title-<%= book.id %>"><b>Title:</b> <%= link_to book.title, book_path(book) %>
+  <b>Rating:</b> <%=book.average_rating %>
   <b>Number of reviews:</b> <%= book.reviews.count %></h3>
   <p> <b>Page count: </b><%= book.page_count %></p>
   <p> <b>Publishing year: </b><%= book.year %></p>

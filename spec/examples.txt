@@ -11,8 +11,9 @@ example_id                                  | status | run_time        |
 ./spec/features/books_index_spec.rb[1:1:9]  | passed | 0.28282 seconds |
 ./spec/features/books_index_spec.rb[1:1:10] | passed | 0.2459 seconds  |
 ./spec/features/books_index_spec.rb[1:1:11] | passed | 0.29644 seconds |
+./spec/features/books_index_spec.rb[1:1:12] | passed | 0.2724 seconds  |
 ./spec/features/books_show_spec.rb[1:1:1]   | passed | 0.13852 seconds |
-./spec/features/books_show_spec.rb[1:1:2]   | passed | 0.08369 seconds |
+./spec/features/books_show_spec.rb[1:1:2]   | passed | 0.2639 seconds  |
 ./spec/models/author_book_spec.rb[1:1:1]    | passed | 0.00082 seconds |
 ./spec/models/author_book_spec.rb[1:1:2]    | passed | 0.00106 seconds |
 ./spec/models/author_spec.rb[1:1:1]         | passed | 0.00083 seconds |

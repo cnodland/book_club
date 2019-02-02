@@ -296,6 +296,20 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page.all('.book')[2]).to_not have_content("Good Book 1")
     end
 
+    it 'can click on book titles and be taken to their show page' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
 
+      visit books_path
+
+      click_on book_1.title
+      expect(current_path).to eq(book_path(book_1))
+
+      visit books_path
+
+      click_on book_2.title
+      expect(current_path).to eq(book_path(book_2))
+    end
   end
 end
