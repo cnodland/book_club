@@ -39,8 +39,8 @@ class Book < ApplicationRecord
 
   def multiple_authors(undesired_author)
     binding.pry
-    Author.joins(:books)
-    .select("authors.*")
+    Book.joins(:authors)
+    .select("authors")
     .where(id: self.id).exclude(authors: undesired_author)
   end
 end
