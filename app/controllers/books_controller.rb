@@ -6,6 +6,10 @@ class BooksController < ApplicationController
     @books = get_books(params)
   end
 
+  def show
+    @book = Book.find(params[:id])
+  end
+
   private
 
   def get_books(params)

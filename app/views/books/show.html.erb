@@ -1,0 +1,11 @@
+<h1><%= @book.title %></h1>
+<section>
+  <p><b>Authors: </b>
+    <% @book.authors.each do |a| %>
+    <%= a.name %>
+    <% end %>
+  </p>
+  <p><b>Page Count: </b>
+      <%= @book.page_count %>
+  </p>
+</section>
