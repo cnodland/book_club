@@ -49,7 +49,7 @@
   <p> <b>Publishing year: </b><%= book.year %></p>
   <p><b>Authors:</b></p>
   <% book.authors.each do |author| %>
-  <%= author.name %>
+  <%= link_to author.name, author_path(author) %>
   <% end %>
 
 </section>

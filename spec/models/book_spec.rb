@@ -15,7 +15,6 @@ RSpec.describe Book, type: :model do
 
 
   describe 'Instance Methods' do
-    describe '.average_rating'
     it 'should get average rating across several reviews' do
       coelho= Author.create(name:'Paulo Coelho')
       user = User.create(username: "User")
@@ -48,6 +47,18 @@ RSpec.describe Book, type: :model do
       expect(book_1.sort_three_reviews(:asc)).to eq(worst_reviews)
       expect(book_1.sort_three_reviews(:desc)).to eq(best_reviews)
     end
+
+    xit 'can return any co authors' do
+      author_1 = Author.create(name:"Author 1")
+      author_2 = Author.create(name:"Author 2")
+      author_3 = Author.create(name: "Author 3")
+
+      book_1 = author_1.books.create(title:"Author 1 book", page_count: 100, year: 2010)
+      book_2 = author_2.books.create(title:"Author 2 book", page_count: 150, year: 2011)
+      book_3 = Book.create(title:"Co authored", page_count: 150, year: 2011, authors: [author_2, author_1])
+
+      expect(book_3.multiple_authors(author_1)).to eq([author_2])
+    end
   end
 
   describe 'Class Methods' do
@@ -70,8 +81,8 @@ RSpec.describe Book, type: :model do
         worst_books = [book_4, book_3, book_2]
         best_books = [book_1, book_2, book_3]
 
-        expect(Book.sort_avg_rating("asc")).to eq(worst_books)
-        expect(Book.sort_avg_rating("desc")).to eq(best_books)
+        expect(Book.sort_avg_rating("asc", 3)).to eq(worst_books)
+        expect(Book.sort_avg_rating("desc", 3)).to eq(best_books)
 
       end
 

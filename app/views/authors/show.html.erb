@@ -1,0 +1,6 @@
+<h1> <%= @author.name %> </h1>
+<% @author.books.each do |book| %>
+  <h3>Book title: <%= book.title   %></h3>
+  <p> <b>Year of publication:</b> <% book.year %></p>
+  <p> <b>Page count:</b> <% book.page_count %></p>
+  <% end %>
