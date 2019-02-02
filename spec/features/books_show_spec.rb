@@ -72,7 +72,7 @@ RSpec.describe 'as a visitor', type: :feature do
       end
 
       within '#avg_rating' do
-
+        expect(page).to have_content('Average Rating: 3')
       end
     end
   end

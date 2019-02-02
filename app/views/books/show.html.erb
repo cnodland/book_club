@@ -12,7 +12,10 @@
 
 <section id="Statistics ">
    <h3>Book Statistics</h3>
+   <h4 id='avg_rating'> Average Rating: <%= @book.average_rating %> </h4>
+
   <article id = 'top_three'>
+    <h4>Top 3 Reviews</h4>
     <% @top_three_reviews.each do |r| %>
     <p> User: <%= r.user.username %>,
     Review: <%= r.title %>,
@@ -21,6 +24,7 @@
   </article>
 
   <article id = 'bottom_three'>
+    <h4>Bottom Tree Reviews</h4>
     <% @bottom_three_reviews.each do |r| %>
     <p> User: <%= r.user.username %>,
     Review: <%= r.title %>,
@@ -28,9 +32,6 @@
     <% end %> </p>
   </article>
 
-  <article id = 'avg_rating'>
-
-  </article>
 </section>
 
 <section id = 'reviews'>
