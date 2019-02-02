@@ -57,6 +57,17 @@ RSpec.describe 'as a visitor', type: :feature do
       end
 
       within '#bottom_three' do
+        expect(page.find('p:nth-child(1)')).to have_content(@review1.title)
+        expect(page.find('p:nth-child(2)')).to have_content(@review2.title)
+        expect(page.find('p:nth-child(3)')).to have_content(@review3.title)
+
+        expect(page.find('p:nth-child(1)')).to have_content(@review1.user.username)
+        expect(page.find('p:nth-child(2)')).to have_content(@review2.user.username)
+        expect(page.find('p:nth-child(3)')).to have_content(@review3.user.username)
+
+        expect(page.find('p:nth-child(1)')).to have_content(@review1.rating)
+        expect(page.find('p:nth-child(2)')).to have_content(@review2.rating)
+        expect(page.find('p:nth-child(3)')).to have_content(@review3.rating)
 
       end
 

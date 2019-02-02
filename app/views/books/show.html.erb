@@ -21,7 +21,11 @@
   </article>
 
   <article id = 'bottom_three'>
-
+    <% @bottom_three_reviews.each do |r| %>
+    <p> User: <%= r.user.username %>,
+    Review: <%= r.title %>,
+    Rating: <%= r.rating %>
+    <% end %> </p>
   </article>
 
   <article id = 'avg_rating'>
