@@ -3,10 +3,3 @@
   <h3>Book title: <%= book.title   %></h3>
   <p> <b>Year of publication:</b> <% book.year %></p>
   <p> <b>Page count:</b> <% book.page_count %></p>
-  <% if book.multiple_authors(@author) %>
-     <p><b>Co-author(s):</b>
-     <% book.multiple_authors(@author).each do |author| %>
-     <b>author.name</b>
-     <% end %></p>
-  <%end  %>
-<% end %>

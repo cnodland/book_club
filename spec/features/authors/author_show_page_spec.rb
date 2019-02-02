@@ -11,7 +11,7 @@ RSpec.describe "When I visit an author's show page", type: :feature do
     @book_3 = Book.create(title:"Co authored", page_count: 150, year: 2011, authors: [@author_2, @author_1])
 
   end
-  it 'should show a list of all books and any co-authors' do
+  xit 'should show a list of all books and any co-authors' do
 
     visit author_path(@author_1)
     save_and_open_page

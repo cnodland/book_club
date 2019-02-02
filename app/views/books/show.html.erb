@@ -17,7 +17,7 @@
   <article id = 'top_three'>
     <h4>Top 3 Reviews</h4>
     <% @top_three_reviews.each do |r| %>
-    <p> User: <%= r.user.username %>,
+    <p class = "review"> User: <%= r.user.username %>,
     Review: <%= r.title %>,
     Rating: <%= r.rating %>
     <% end %> </p>

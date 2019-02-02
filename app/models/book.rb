@@ -37,10 +37,9 @@ class Book < ApplicationRecord
     .limit(3)
   end
 
-  def multiple_authors(undesired_author)
-    binding.pry
-    Book.joins(:authors)
-    .select("authors")
-    .where(id: self.id).exclude(authors: undesired_author)
-  end
+  # def multiple_authors(undesired_author)
+  #   Book.joins(:authors)
+  #   .select("authors")
+  #   .where(id: self.id).exclude(authors: undesired_author)
+  # end
 end
