@@ -9,7 +9,9 @@ RSpec.describe 'as a visitor', type: :feature do
       @user1 = User.create(username: 'cooldude1000')
       @user2 = User.create(username: 'cooldude1001')
       @review1 = Review.create(title: 'book sucked', review_text: 'was not worth the read', rating: 1, book: @book1, user: @user1)
-      @review2 = Review.create(title: 'book rocked', review_text: 'was worth the read', rating: 5, book: @book1, user: @user2)
+      @review2 = Review.create(title: 'book sucked', review_text: 'was not worth the read', rating: 2, book: @book1, user: @user1)
+      @review3 = Review.create(title: 'book rocked', review_text: 'was worth the read', rating: 4, book: @book1, user: @user2)
+      @review4 = Review.create(title: 'book rocked', review_text: 'was worth the read', rating: 5, book: @book1, user: @user2)
     end
 
     it 'should show the books title author(s) and pages' do
@@ -40,9 +42,18 @@ RSpec.describe 'as a visitor', type: :feature do
       visit book_path(@book1)
 
       within '#top_three' do
-        expect(page[0]).to have_content(@top_three_reviews[0])
-        expect(page[1]).to have_content(@top_three_reviews[1])
-        expect(page[2]).to have_content(@top_three_reviews[2])
+        expect(page.find('p:nth-child(1)')).to have_content(@review4.title)
+        expect(page.find('p:nth-child(2)')).to have_content(@review3.title)
+        expect(page.find('p:nth-child(3)')).to have_content(@review2.title)
+
+        expect(page.find('p:nth-child(1)')).to have_content(@review4.user.username)
+        expect(page.find('p:nth-child(2)')).to have_content(@review3.user.username)
+        expect(page.find('p:nth-child(3)')).to have_content(@review2.user.username)
+
+        expect(page.find('p:nth-child(1)')).to have_content(@review4.rating)
+        expect(page.find('p:nth-child(2)')).to have_content(@review3.rating)
+        expect(page.find('p:nth-child(3)')).to have_content(@review2.rating)
+
       end
 
       within '#bottom_three' do
