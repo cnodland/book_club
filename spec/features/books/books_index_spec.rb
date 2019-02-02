@@ -311,5 +311,15 @@ RSpec.describe 'As a visitor', type: :feature do
       click_on book_2.title
       expect(current_path).to eq(book_path(book_2))
     end
+
+    it 'can click on any author and be taken to that author page' do
+      coelho= Author.create(name:'Paulo Coelho')
+      coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+
+      visit books_path
+
+      click_on coelho.name
+      expect(current_path).to eq(author_path(coelho))
+    end
   end
 end
