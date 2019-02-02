@@ -27,6 +27,27 @@ RSpec.describe Book, type: :model do
 
       expect(book_1.average_rating).to eq(3.67)
     end
+
+    it 'can sort by best and worst reviews' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book", page_count: 200, year: 1988)
+
+      user_1 = User.create(username:"User1")
+      user_2 = User.create(username:"User2")
+      user_3 = User.create(username:"User3")
+      user_4 = User.create(username:"User4")
+
+      review1 = Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      review2 = Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 4, book: book_1, user: user_2 )
+      review3 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_3 )
+      review4 = Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_1, user: user_4 )
+
+      worst_reviews = [review4, review3, review2]
+      best_reviews = [review1, review2, review3]
+
+      expect(book_1.sort_three_reviews(:asc)).to eq(worst_reviews)
+      expect(book_1.sort_three_reviews(:desc)).to eq(best_reviews)
+    end
   end
 
   describe 'Class Methods' do
@@ -53,6 +74,8 @@ RSpec.describe Book, type: :model do
         expect(Book.sort_avg_rating("desc")).to eq(best_books)
 
       end
+
+
     end
   end
 end

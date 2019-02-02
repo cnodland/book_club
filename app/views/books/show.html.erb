@@ -1,0 +1,46 @@
+<h1><%= @book.title %></h1>
+<section>
+  <p><b>Authors: </b>
+    <% @book.authors.each do |a| %>
+    <%= a.name %>
+    <% end %>
+  </p>
+  <p><b>Page Count: </b>
+      <%= @book.page_count %>
+  </p>
+</section>
+
+<section id="Statistics ">
+   <h3>Book Statistics</h3>
+   <h4 id='avg_rating'> Average Rating: <%= @book.average_rating %> </h4>
+
+  <article id = 'top_three'>
+    <h4>Top 3 Reviews</h4>
+    <% @top_three_reviews.each do |r| %>
+    <p> User: <%= r.user.username %>,
+    Review: <%= r.title %>,
+    Rating: <%= r.rating %>
+    <% end %> </p>
+  </article>
+
+  <article id = 'bottom_three'>
+    <h4>Bottom Tree Reviews</h4>
+    <% @bottom_three_reviews.each do |r| %>
+    <p> User: <%= r.user.username %>,
+    Review: <%= r.title %>,
+    Rating: <%= r.rating %>
+    <% end %> </p>
+  </article>
+
+</section>
+
+<section id = 'reviews'>
+  <h3>Reviews: </h3>
+  <% @book.reviews.each do |r| %>
+  <ul>
+    <li>Reviewer: <%= r.user.username %> </li>
+    <li><%= r.title %></li>
+    <li>Rating: <%= r.rating %></li>
+    <li><%= r.review_text %></li>
+  </ul> <% end %>
+</section>

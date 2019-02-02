@@ -6,6 +6,13 @@ class BooksController < ApplicationController
     @books = get_books(params)
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @top_three_reviews = @book.sort_three_reviews(:desc)
+    @bottom_three_reviews = @book.sort_three_reviews(:asc)
+    @avg_rating = @book.average_rating
+  end
+
   private
 
   def get_books(params)
