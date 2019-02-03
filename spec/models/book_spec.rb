@@ -48,16 +48,18 @@ RSpec.describe Book, type: :model do
       expect(book_1.sort_three_reviews(:desc)).to eq(best_reviews)
     end
 
-    xit 'can return any co authors' do
+    it 'can return any co authors' do
       author_1 = Author.create(name:"Author 1")
       author_2 = Author.create(name:"Author 2")
       author_3 = Author.create(name: "Author 3")
 
-      book_1 = author_1.books.create(title:"Author 1 book", page_count: 100, year: 2010)
-      book_2 = author_2.books.create(title:"Author 2 book", page_count: 150, year: 2011)
+      author_1.books.create(title:"Author 1 book", page_count: 100, year: 2010)
+      author_2.books.create(title:"Author 2 book", page_count: 150, year: 2011)
       book_3 = Book.create(title:"Co authored", page_count: 150, year: 2011, authors: [author_2, author_1])
+      author_3.books.create(title:"Should not appear here", page_count: 20, year: 3000)
 
-      expect(book_3.multiple_authors(author_1)).to eq([author_2])
+
+      expect(book_3.co_authors(author_1)).to eq([author_2])
     end
   end
 
