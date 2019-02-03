@@ -1,0 +1,15 @@
+<h1>User: <%= @user.username %></h1>
+<ul>
+<% @user.reviews.each do |review| %>
+  <li>Review: <%= review.title %>
+    <ul>
+      <li><b>Book: </b><%= review.book.title%></li>
+      <li><b>Rating:</b> <%= review.rating %></li>
+      <li> <b>Review text: </b> <%= review.review_text %> </li>
+    </ul>
+
+  </li>
+
+<% end %>
+
+</ul>

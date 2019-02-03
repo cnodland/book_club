@@ -14,9 +14,9 @@ RSpec.describe 'When I visit a user show page' do
 
     review_1 = Review.create(title: "Review title", rating: 5, review_text: "Review text for review 1", book: book_1, user: user)
     review_2 = Review.create(title: "Review title", rating: 4, review_text: "Review text for review 2", book: book_2, user: user)
-    review_3 = Review.create(title: "Review title", rating: 3, review_text: "Review text for review 2", book: book_3, user: user)
-    review_4 = Review.create(title: "Review title", rating: 2, review_text: "Review text for review 2", book: book_4, user: user)
-    review_5 = Review.create(title: "Review title", rating: 1, review_text: "Review text for review 2", book: book_5, user: user)
+    review_3 = Review.create(title: "Review title", rating: 3, review_text: "Review text for review 3", book: book_3, user: user)
+    review_4 = Review.create(title: "Review title", rating: 2, review_text: "Review text for review 4", book: book_4, user: user)
+    review_5 = Review.create(title: "Review title", rating: 1, review_text: "Review text for review 5", book: book_5, user: user)
     review_6 = Review.create(title: "Review title for review from different user", rating: 1, review_text: "Review text for review 6", book: book_1, user: unwanted_user)
 
     visit user_path(user)
