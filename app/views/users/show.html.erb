@@ -1,7 +1,13 @@
 <h1>User: <%= @user.username %></h1>
+
+<section>
+  <%= button_to "Sort by newest", user_path(@user), params:{sort: "reviews_newest"}, method: :get %>
+  <%= button_to "Sort by oldest", user_path(@user), params:{sort: "reviews_oldest"}, method: :get %>
+  <%= button_to "Take me back", user_path(@user), method: :get %>
+</section>
 <ul>
-<% @user.reviews.each do |review| %>
-  <li>Review: <%= review.title %>
+<% @reviews.each do |review| %>
+  <li class="review">Review: <%= review.title %>
     <ul>
       <li><b>Book: </b><%= review.book.title%></li>
       <li><b>Rating:</b> <%= review.rating %></li>
