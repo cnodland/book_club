@@ -11,6 +11,7 @@ class BooksController < ApplicationController
     @top_three_reviews = @book.sort_three_reviews(:desc)
     @bottom_three_reviews = @book.sort_three_reviews(:asc)
     @avg_rating = @book.average_rating
+  
   end
 
   private
