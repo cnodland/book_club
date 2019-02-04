@@ -71,4 +71,13 @@ RSpec.describe 'When I visit a user show page' do
     expect(page.all('.review')[3]).to have_content(@review_1.title)
     expect(page.all('.review')[4]).to have_content(@review_5.title)
   end
+
+  it 'should be able to delete a review' do
+    visit user_path(@user)
+    within("#review-#{@review_4.id}") do
+      click_button "Delete this review"
+    end
+
+    expect(page).to_not have_content("Review title for 4")
+  end
 end
