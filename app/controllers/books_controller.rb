@@ -20,23 +20,27 @@ class BooksController < ApplicationController
   end
 
   def create
-    @authors = Author.new(book_params[:authors])
-    @book = Book.new(book_params)
-    binding.pry
-    @authors =
+    @book = Book.find_or_initialize_by(book_params)
+   all_authors = params[:book][:authors]
+   array_authors = all_authors.split(',')
+   array_authors.each do |author|
+     @book.authors << Author.find_or_create_by(name: author.titleize)
+   end
 
+   @book.title = @book.title.titleize
 
-
-    @book.save
-
-    redirect_to book_path(@book)
+   if @book.save
+     redirect_to book_path(@book)
+   else
+     redirect_to new_book_path
+   end
   end
 
   private
 
   def book_params
     # binding.pry
-    params.require(:book).permit(:title, :page_count, :year, :authors)
+    params.require(:book).permit(:title, :page_count, :year, :authors => [])
   end
 
   def get_books(params)
