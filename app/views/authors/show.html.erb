@@ -1,0 +1,20 @@
+<h1> <%= @author.name %> </h1>
+<% @author.books.each do |book| %>
+  <h3>Book title: <%= link_to book.title, book_path(book)  %></h3>
+  <% if book.reviews.length >=1 %>
+
+    <h4> Top Review:</h4>
+    User: <%= link_to book.top_review.user.username, user_path(book.top_review.user) %>,
+    Review: <%= book.top_review.title %>,
+    Rating: <%= book.top_review.rating %>
+  <% end %>
+
+
+  <p> <b>Year of publication:</b> <%=book.year %></p>
+  <p> <b>Page count:</b> <%= book.page_count %></p>
+  <% if book.authors.length > 1 %>
+  <p><b>Co-author(s): </b> <%book.co_authors(@author).each do |author|  %></p>
+    <%= link_to author.name, author_path(author) %>
+ <% end %>
+  <% end %>
+  <% end %>

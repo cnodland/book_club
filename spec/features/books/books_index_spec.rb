@@ -311,5 +311,36 @@ RSpec.describe 'As a visitor', type: :feature do
       click_on book_2.title
       expect(current_path).to eq(book_path(book_2))
     end
+
+    it 'can click on any author and be taken to that author page' do
+      coelho= Author.create(name:'Paulo Coelho')
+      coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+
+      visit books_path
+
+      click_on coelho.name
+      expect(current_path).to eq(author_path(coelho))
+    end
+
+    it 'can click on any user and be taken to that user show page' do
+      coelho= Author.create(name:'Paulo Coelho')
+      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
+      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+
+      user_1 = User.create(username:"User1")
+
+      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_2, user: user_1 )
+      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
+
+      visit books_path
+      click_on user_1.username
+
+      expect(current_path).to eq(user_path(user_1))
+    end
   end
 end

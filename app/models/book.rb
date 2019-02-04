@@ -16,7 +16,7 @@ class Book < ApplicationRecord
   end
 
   def self.sort_avg_rating(order, limit = 50)
-    Book.joins(:reviews)
+    Book.left_outer_joins(:reviews)
     .select("books.*, avg(reviews.rating) as avg_rating")
     .group(:id)
     .order("avg_rating #{order}" )
@@ -24,16 +24,26 @@ class Book < ApplicationRecord
   end
 
   def self.sort_num_reviews(order)
-    Book.joins(:reviews)
+    Book.left_outer_joins(:reviews)
     .select("books.*, count(reviews) as num_reviews")
     .group(:id)
     .order("num_reviews #{order}")
     .limit(50)
   end
 
-  def sort_three_reviews(order)
+  def sort_three_reviews(order, limit = 3)
     Review.where(book: self)
     .order(rating: order)
-    .limit(3)
+    .limit(limit)
+  end
+
+  def co_authors(undesired_author)
+    authors.where.not(id: undesired_author.id)
+  end
+
+  def top_review
+    if reviews.length >= 1
+      return sort_three_reviews('desc',1).first
+    end
   end
 end

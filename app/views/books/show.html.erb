@@ -2,7 +2,7 @@
 <section>
   <p><b>Authors: </b>
     <% @book.authors.each do |a| %>
-    <%= a.name %>
+    <%= link_to a.name, author_path(a) %>
     <% end %>
   </p>
   <p><b>Page Count: </b>
@@ -17,7 +17,7 @@
   <article id = 'top_three'>
     <h4>Top 3 Reviews</h4>
     <% @top_three_reviews.each do |r| %>
-    <p> User: <%= r.user.username %>,
+    <p class = "review"> User: <%= link_to r.user.username, user_path(r.user) %>,
     Review: <%= r.title %>,
     Rating: <%= r.rating %>
     <% end %> </p>
@@ -26,7 +26,7 @@
   <article id = 'bottom_three'>
     <h4>Bottom 3 Reviews</h4>
     <% @bottom_three_reviews.each do |r| %>
-    <p> User: <%= r.user.username %>,
+    <p> User: <%= link_to r.user.username, user_path(r.user) %>,
     Review: <%= r.title %>,
     Rating: <%= r.rating %>
     <% end %> </p>
@@ -38,7 +38,7 @@
   <h3>Reviews: </h3>
   <% @book.reviews.each do |r| %>
   <ul>
-    <li>Reviewer: <%= r.user.username %> </li>
+    <li>Reviewer: <%= link_to r.user.username, user_path(r.user) %> </li>
     <li><%= r.title %></li>
     <li>Rating: <%= r.rating %></li>
     <li><%= r.review_text %></li>
