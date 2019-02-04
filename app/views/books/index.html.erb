@@ -36,7 +36,7 @@
   <%= button_to "Sort by best to worst", books_path, params:{sort: "avg_rating_desc"}, method: :get%>
   <%= button_to "Sort by most reviewed", books_path, params:{sort: "num_reviews_desc"}, method: :get%>
   <%= button_to "Sort by least reviewed", books_path, params:{sort: "num_reviews_asc"}, method: :get%>
-  
+  <%= button_to "Add a new book", new_book_path, method: :get %>
 
 </section>
 
