@@ -4,7 +4,7 @@
   <% if book.reviews.length >=1 %>
 
     <h4> Top Review:</h4>
-    User: <%= book.top_review.user.username %>,
+    User: <%= link_to book.top_review.user.username, user_path(book.top_review.user) %>,
     Review: <%= book.top_review.title %>,
     Rating: <%= book.top_review.rating %>
   <% end %>

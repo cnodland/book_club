@@ -6,12 +6,15 @@ RSpec.describe 'as a visitor', type: :feature do
       @author = Author.create(name: 'Trevor')
       @author2 = Author.create(name: 'Teresa')
       @book1 = Book.create(title: 'book1', page_count: 200, year: 2019, authors: [@author, @author2])
+      @book2 = Book.create(title: 'book2', page_count: 100, year: 2018, authors: [@author])
       @user1 = User.create(username: 'user1')
       @user2 = User.create(username: 'user2')
+      @user3 = User.create(username: 'user3')
       @review1 = Review.create(title: 'review 1', review_text: 'was not worth the read', rating: 1, book: @book1, user: @user1)
       @review2 = Review.create(title: 'review 2', review_text: 'was not worth the read', rating: 2, book: @book1, user: @user1)
-      @review3 = Review.create(title: 'review 3', review_text: 'was worth the read', rating: 4, book: @book1, user: @user2)
-      @review4 = Review.create(title: 'review 4', review_text: 'was worth the read', rating: 5, book: @book1, user: @user2)
+      @review3 = Review.create(title: 'review 3', review_text: 'was worth the read', rating: 5, book: @book1, user: @user2)
+      @review4 = Review.create(title: 'review 4', review_text: 'was worth the read', rating: 5, book: @book2, user: @user3)
+
     end
 
     it 'should show the books title author(s) and pages' do
@@ -75,7 +78,7 @@ RSpec.describe 'as a visitor', type: :feature do
         bottom_3[2].has_content?("User: #{@review3.user.username}")
       end
       within '#avg_rating' do
-        expect(page).to have_content('Average Rating: 3')
+        expect(page).to have_content('Average Rating: 2.67')
       end
     end
 
@@ -85,6 +88,16 @@ RSpec.describe 'as a visitor', type: :feature do
       click_on @author.name
 
       expect(current_path).to eq(author_path(@author))
+    end
+
+    it 'should link an username to that user show page' do
+      visit book_path(@book2)
+
+
+      within '#reviews' do
+        click_on @user3.username
+        expect(current_path).to eq(user_path(@user3))
+      end
     end
   end
 end
