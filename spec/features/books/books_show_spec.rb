@@ -99,5 +99,13 @@ RSpec.describe 'as a visitor', type: :feature do
         expect(current_path).to eq(user_path(@user3))
       end
     end
+
+    it 'has a link to add a new review' do
+      visit book_path(@book1)
+
+      click_button 'Add new review'
+
+      expect(current_path).to eq(new_book_review_path(@book1))
+    end
   end
 end

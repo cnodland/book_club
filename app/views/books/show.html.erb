@@ -38,6 +38,7 @@
 </section>
 
 <section id = 'reviews'>
+  <%= button_to "Add new review", new_book_review_path(@book), method: :get %>
   <h3>Reviews: </h3>
   <% @book.reviews.each do |r| %>
   <ul>
