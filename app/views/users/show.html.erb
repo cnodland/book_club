@@ -3,19 +3,18 @@
 <section>
   <%= button_to "Sort by newest", user_path(@user), params:{sort: "reviews_newest"}, method: :get %>
   <%= button_to "Sort by oldest", user_path(@user), params:{sort: "reviews_oldest"}, method: :get %>
-  
+
 </section>
 <ul>
 <% @reviews.each do |review| %>
-  <li class="review">Review: <%= review.title %>
+  <li class="review" id="review-<%= review.id %>"> Review: <%= review.title %>
     <ul>
       <li><b>Book: </b><%= link_to review.book.title, book_path(review.book)%></li>
       <li><b>Rating:</b> <%= review.rating %></li>
       <li> <b>Review text: </b> <%= review.review_text %> </li>
     </ul>
-
+    <%= button_to "Delete this review", user_review_path(@user, review), method: :delete %>
   </li>
-
 <% end %>
 
 </ul>
