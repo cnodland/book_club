@@ -6,10 +6,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+      <h4> <%= link_to "Welcome page", root_path, method: :get %>
+
+      <%= link_to "Library", books_path, method: :get %> </h4>
+
   </head>
 
   <body>
-  
+
     <%= yield %>
   </body>
 </html>
