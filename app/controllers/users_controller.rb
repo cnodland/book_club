@@ -4,9 +4,6 @@ class UsersController < ApplicationController
     @reviews = get_reviews(params)
   end
 
-  def delete
-
-  end
 
   private
   def get_reviews(params)

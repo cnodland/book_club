@@ -107,5 +107,14 @@ RSpec.describe 'as a visitor', type: :feature do
 
       expect(current_path).to eq(new_book_review_path(@book1))
     end
+
+    it 'has a link to delete the book' do
+      visit book_path(@book1)
+
+      click_button "Delete this book"
+
+      expect(current_path).to eq(books_path)
+      expect(page).to_not have_content('book1')
+    end
   end
 end

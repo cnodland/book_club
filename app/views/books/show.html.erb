@@ -37,6 +37,8 @@
 
 </section>
 
+<%= button_to "Delete this book", book_path(@book), method: :delete %>
+
 <section id = 'reviews'>
   <%= button_to "Add new review", new_book_review_path(@book), method: :get %>
   <h3>Reviews: </h3>
