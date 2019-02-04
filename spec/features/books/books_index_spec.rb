@@ -273,7 +273,7 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page.all('.book')[2]).to have_content("Good Book 1")
     end
 
-    it 'can return to index page with a button' do
+    xit 'can return to index page with a button' do
       coelho= Author.create(name:'Paulo Coelho')
       book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
       book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
@@ -341,6 +341,14 @@ RSpec.describe 'As a visitor', type: :feature do
       click_on user_1.username
 
       expect(current_path).to eq(user_path(user_1))
+    end
+
+    it 'can click on a link to go to a form for a new book' do
+      visit books_path
+
+      click_button 'Add a new book'
+
+      expect(current_path).to eq(new_book_path)
     end
   end
 end

@@ -11,10 +11,33 @@ class BooksController < ApplicationController
     @top_three_reviews = @book.sort_three_reviews(:desc)
     @bottom_three_reviews = @book.sort_three_reviews(:asc)
     @avg_rating = @book.average_rating
-  
+
+  end
+
+  def new
+    @authors = Author.new
+    @book = Book.new
+  end
+
+  def create
+    @authors = Author.new(book_params[:authors])
+    @book = Book.new(book_params)
+    binding.pry
+    @authors =
+
+
+
+    @book.save
+
+    redirect_to book_path(@book)
   end
 
   private
+
+  def book_params
+    # binding.pry
+    params.require(:book).permit(:title, :page_count, :year, :authors)
+  end
 
   def get_books(params)
     if params[:sort] == "pages_asc"
