@@ -4,12 +4,16 @@
     <title>BookClub</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'public/main', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
-      <h4> <%= link_to "Welcome page", root_path, method: :get %>
 
-      <%= link_to "Library", books_path, method: :get %> </h4>
+    <nav>
+      <ul>
+        <li><%= link_to "Welcome page", root_path, method: :get %></li>
+        <li><%= link_to "Library", books_path, method: :get %> </li>
+      </ul>
+    </nav>
 
   </head>
 

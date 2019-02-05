@@ -1,0 +1,48 @@
+body {background-color: #CBCBD1;
+      margin: 0;
+      padding: 0;
+      font-family: "Georgia", serif}
+
+body h1{margin-top: 50px;
+        text-align: center;}
+
+body h2{ margin-top: 25px; }
+body a{text-decoration: none;
+      color: #B9463E}
+
+nav {background-color: #577399;}
+
+nav ul {background-color: #577399;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        width: 100%}
+
+nav li {float: left;}
+
+nav a {display: block;
+      text-align: center;
+      padding: 14px 16px;
+      color: #E8E8E8;
+      text-decoration: none;}
+
+#statistics{margin-left: 20px}
+
+
+.button { background-color: #BDD5EA;
+          float: left;
+          margin-left: 20px}
+
+#sort_buttons{display: flow-root;}
+
+.books_container{display: grid;
+                grid-template-columns: auto auto auto auto
+                }
+
+.book{
+  background-color: #495867
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+  margin-left: 20px}
