@@ -69,7 +69,7 @@ review_19 = Review.create(title:"Bad review for book 5",review_text: "hated it",
 review_20 = Review.create(title:"Bad review for book 7",review_text: "hated it", rating: 1, book: book_7, user: user_3 )
 review_21 = Review.create(title:"Bad review for book 8",review_text: "hated it", rating: 2, book: book_8, user: user_3 )
 
-review_22= Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_2, user: user_4 )
+review_22= Review.create(title:"Good review for book 2",review_text: "Loved it Loved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved itLoved it ", rating: 5, book: book_2, user: user_4 )
 review_23 = Review.create(title:"Good review for book 4",review_text: "Loved it", rating: 4, book: book_4, user: user_4 )
 review_24 = Review.create(title:"Bad review for book 6",review_text: "hated it", rating: 1, book: book_14, user: user_4 )
 review_25 = Review.create(title:"Bad review for book 6",review_text: "hated it", rating: 1, book: book_12, user: user_4 )

@@ -1,19 +1,21 @@
 <h1>User: <%= @user.username %></h1>
 
 <section>
-  <%= button_to "Sort by newest", user_path(@user), params:{sort: "reviews_newest"}, method: :get %>
-  <%= button_to "Sort by oldest", user_path(@user), params:{sort: "reviews_oldest"}, method: :get %>
+  <%= button_to "Sort by newest", user_path(@user), params:{sort: "reviews_newest"}, method: :get, class: "user_button" %>
+  <%= button_to "Sort by oldest", user_path(@user), params:{sort: "reviews_oldest"}, method: :get, class: "user_button"%>
 
 </section>
 <ul>
 <% @reviews.each do |review| %>
-  <li class="review" id="review-<%= review.id %>"> Review: <%= review.title %>
-    <ul>
+  <li class="review" id="review-<%= review.id %>"> <b><%= review.title %></b>
+    <ul class="review_info">
       <li><b>Book: </b><%= link_to review.book.title, book_path(review.book)%></li>
+        <img src="<%= review.book.image %>" alt="<% review.book.title %>" width="400" height="500">
+
       <li><b>Rating:</b> <%= review.rating %></li>
-      <li> <b>Review text: </b> <%= review.review_text %> </li>
+      <li> <b>Review: </b> <div class="review_text"><%= review.review_text %> </div></li>
     </ul>
-    <%= button_to "Delete this review", user_review_path(@user, review), method: :delete %>
+    <%= button_to "Delete this review", user_review_path(@user, review), method: :delete, class: "user_button" %>
   </li>
 <% end %>
 

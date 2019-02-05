@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    # binding.pry
     redirect_to user_path(params[:user_id])
   end
 

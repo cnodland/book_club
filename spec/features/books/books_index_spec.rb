@@ -277,16 +277,20 @@ RSpec.describe 'As a visitor', type: :feature do
       coelho= Author.create(name:'Paulo Coelho')
       book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
       book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
+      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
+      book_4 = coelho.books.create(title:"Good Book 4", page_count: 150, year: 2000)
+      book_5 = coelho.books.create(title:"Good Book 5", page_count: 150, year: 2000)
+      book_6 = coelho.books.create(title:"Good Book 6", page_count: 150, year: 2000)
+      book_7 = coelho.books.create(title:"Good Book 7", page_count: 150, year: 2000)
 
       visit books_path
+      # save_and_open_page
 
-      click_on book_1.title
+      within "#title-#{book_1.id}" do
+        click_on book_1.title
+      end
+
       expect(current_path).to eq(book_path(book_1))
-
-      visit books_path
-
-      click_on book_2.title
-      expect(current_path).to eq(book_path(book_2))
     end
 
     it 'can click on any author and be taken to that author page' do

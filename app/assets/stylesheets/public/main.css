@@ -1,14 +1,15 @@
 body {background-color: #CBCBD1;
       margin: 0;
       padding: 0;
-      font-family: "Georgia", serif}
+      font-family: "Georgia", serif;
+    }
 
 body h1{margin-top: 50px;
         text-align: center;}
 
 body h2{ margin-top: 25px; }
 body a{text-decoration: none;
-      color: #B9463E}
+      color: #B9463E;}
 
 nav {background-color: #577399;}
 
@@ -18,7 +19,7 @@ nav ul {background-color: #577399;
         padding: 0;
         position: fixed;
         top: 0;
-        width: 100%}
+        width: 100%;}
 
 nav li {float: left;}
 
@@ -28,21 +29,98 @@ nav a {display: block;
       color: #E8E8E8;
       text-decoration: none;}
 
-#statistics{margin-left: 20px}
+.statistics{margin-left: 20px;
+            }
+
+#columns   { display: grid;
+              grid-template-columns: auto auto auto;
+}
+
+.statistics h2{text-align: center;}
+
 
 
 .button { background-color: #BDD5EA;
           float: left;
-          margin-left: 20px}
+          margin-left: 20px;
+          font-weight: bold;}
 
-#sort_buttons{display: flow-root;}
+.user_button  { background-color: #BDD5EA;
+
+                font-weight: bold;}
+.review {
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+
+.review_info {
+    list-style-type: none;
+    width: 450px;
+}
+
+.review_text {
+  white-space: normal;
+  font-size: 14px;
+}
+
+#sort_buttons{display: flow-root;
+              margin-bottom: 10px;}
 
 .books_container{display: grid;
-                grid-template-columns: auto auto auto auto
+                grid-template-columns: auto auto auto auto;
+                grid-row-gap: 25px;
+
                 }
 
 .book{
-  background-color: #495867
+  background-color: #495867;
   grid-column-gap: 25px;
-  grid-row-gap: 25px;
-  margin-left: 20px}
+  padding: 5px;
+    margin-right: 25px;
+  margin-left: 20px;}
+
+.new {margin-top: 50px;
+}
+
+.author_image {
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
+max-width: 100%;
+height: auto;
+}
+
+.delete_container {
+ margin-left:47%;
+ margin-top: 10px;
+ margin-bottom: 10px;
+ display: inline-block;
+}
+
+#author_books {
+  margin-left: 40%;
+}
+
+.book_info {
+  margin-left: 45%;
+}
+
+#book_stats{
+  margin-left: 20px;
+}
+
+#reviews {
+  margin-left: 20px;
+  list-style-type: none;
+}
+
+.welcome {
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
+max-width: 100%;
+height: auto;
+}
+.git_link {
+
+}
