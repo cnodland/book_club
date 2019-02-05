@@ -53,4 +53,20 @@ RSpec.describe "When I visit an author's show page", type: :feature do
 
     expect(current_path).to eq(user_path(@user_2))
   end
+
+  it 'should be able to delete an author' do
+    visit author_path(@author_2)
+
+    click_button 'Delete this author'
+    # save_and_open_page
+
+    expect(current_path).to eq(books_path)
+    expect(page).to_not have_content(@book_2.title)
+    expect(page).to have_content(@book_1.title)
+
+    expect(page).to_not have_content(@book_3.title)
+    expect(page).to_not have_content(@author_2.name)
+    expect(page).to have_content(@author_1.name)
+  end
+
 end
