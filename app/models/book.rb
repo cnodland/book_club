@@ -40,6 +40,7 @@ class Book < ApplicationRecord
   end
 
   def sort_three_reviews(order, limit = 3)
+    
     Review.where(book: self)
     .order(rating: order)
     .limit(limit)
