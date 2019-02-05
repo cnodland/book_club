@@ -1,5 +1,7 @@
 <h1><%= @book.title %></h1>
-<section>
+<img src="<%= @book.image %>" alt="<% @book.title %>" width="400" height="500" class="author_image"> <br>
+
+<section class="book_info">
   <p><b>Authors: </b>
     <% @book.authors.each do |a| %>
     <%= link_to a.name, author_path(a) %>
@@ -13,7 +15,7 @@
     </p>
 </section>
 
-<section id="Statistics ">
+<section id="book_stats">
    <h3>Book Statistics</h3>
    <h4 id='avg_rating'> Average Rating: <%= @book.average_rating %> </h4>
 
@@ -35,15 +37,15 @@
     <% end %> </p>
   </article>
 
+  <%= button_to "Delete this book", book_path(@book), method: :delete, class:"user_button" %>
 </section>
 
-<%= button_to "Delete this book", book_path(@book), method: :delete %>
 
-<section id = 'reviews'>
-  <%= button_to "Add new review", new_book_review_path(@book), method: :get %>
+<section id='reviews'>
+  <%= button_to "Add new review", new_book_review_path(@book), method: :get, class:"user_button" %>
   <h3>Reviews: </h3>
   <% @book.reviews.each do |r| %>
-  <ul>
+  <ul class ="review">
     <li>Reviewer: <%= link_to r.user.username, user_path(r.user) %> </li>
     <li><%= r.title %></li>
     <li>Rating: <%= r.rating %></li>

@@ -45,7 +45,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    # binding.pry
     params.require(:book).permit(:title, :page_count, :year, :authors => [])
   end
 

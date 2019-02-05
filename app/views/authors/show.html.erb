@@ -1,14 +1,21 @@
 <h1> <%= @author.name %> </h1>
-<img src="<%= @author.image %>" alt="<%= @author.name%>">
-<%= button_to 'Delete this author', author_path(@author), method: :delete %>
-<% @author.books.each do |book| %>
+<img src="<%= @author.image %>"  width="500" height="500" alt="<%= @author.name%>" class="author_image">
+<div class="delete_container">
+<%= button_to 'Delete this author', author_path(@author), method: :delete, class:"button", id:"delete_author" %>
+</div>
+
+<section id="author_books">
+
+  <% @author.books.each do |book| %>
   <h3>Book title: <%= link_to book.title, book_path(book)  %></h3>
+  <img src="<%= book.image %>" alt="<% book.title %>" width="400" height="500"> <br>
+
   <% if book.reviews.length >=1 %>
 
     <h4> Top Review:</h4>
-    User: <%= link_to book.top_review.user.username, user_path(book.top_review.user) %>,
-    Review: <%= book.top_review.title %>,
-    Rating: <%= book.top_review.rating %>
+    <b>User: </b><%= link_to book.top_review.user.username, user_path(book.top_review.user) %>,
+    <b>Review: </b><%= book.top_review.title %>,
+    <b>Rating:</b> <%= book.top_review.rating %>
   <% end %>
 
 
@@ -17,6 +24,8 @@
   <% if book.authors.length > 1 %>
   <p><b>Co-author(s): </b> <%book.co_authors(@author).each do |author|  %></p>
     <%= link_to author.name, author_path(author) %>
- <% end %>
   <% end %>
   <% end %>
+  <% end %>
+
+</section>

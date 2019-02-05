@@ -6,14 +6,6 @@ class Book < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :page_count
   validates_presence_of :year
-  # validate :has_at_least_one_author
-  #
-  # def has_at_least_one_author
-  #   binding.pry
-  #   if authors.
-  #     errors.add(:books, "needs one author")
-  #   end
-  # end
 
   def average_rating
     if reviews.count >= 1
@@ -40,7 +32,7 @@ class Book < ApplicationRecord
   end
 
   def sort_three_reviews(order, limit = 3)
-    
+
     Review.where(book: self)
     .order(rating: order)
     .limit(limit)

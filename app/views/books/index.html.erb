@@ -1,12 +1,14 @@
 <h1>Welcome to the Library!</h1>
-<section id = "statistics">
+<section class="statistics">
   <h2>Book Statistics</h2>
+
+  <section id ="columns">
 
   <article id = "top-3">
     <h4>Best three books:</h4>
     <ul>
       <% @top_three_books.each do |book| %>
-      <li><%= book.title %></li>
+      <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ul>
   </article>
@@ -15,7 +17,7 @@
     <h4>Worst three books:</h4>
     <ul>
       <% @worst_three_books.each do |book| %>
-      <li><%= book.title %></li>
+      <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ul>
   </article>
@@ -28,6 +30,7 @@
       <% end %>
     </ul>
   </article>
+    </section>
 </section>
 
 <section id="sort_buttons">
@@ -45,10 +48,10 @@
 
 <% @books.each do |book| %>
 <section id="book-<%= book.id %>" class="book">
-  <h3 id="title-<%= book.id %>"><b>Title:</b> <%= link_to book.title, book_path(book) %> <br>
+  <h3 id="title-<%= book.id %>"><b>Title:</b> <%= link_to book.title, book_path(book) %> <br></h3>
   <img src="<%= book.image %>" alt="<% book.title %>" width="400" height="500"> <br>
   <b>Rating:</b> <%=book.average_rating %>
-  <b>Number of reviews:</b> <%= book.reviews.count %></h3>
+  <b>Number of reviews:</b> <%= book.reviews.count %>
   <p> <b>Page count: </b><%= book.page_count %></p>
   <p> <b>Publishing year: </b><%= book.year %></p>
   <p><b>Author(s):</b></p>
