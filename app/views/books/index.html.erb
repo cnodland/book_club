@@ -1,5 +1,6 @@
+<h1>Welcome to the Library!</h1>
 <section id = "statistics">
-  <h3>Book Statistics</h3>
+  <h2>Book Statistics</h2>
 
   <article id = "top-3">
     <h4>Best three books:</h4>
@@ -29,29 +30,32 @@
   </article>
 </section>
 
-<section>
-  <%= button_to "Sort by Pages Ascending", books_path, params:{sort: "pages_asc"}, method: :get%>
-  <%= button_to "Sort by Pages Descending", books_path, params:{sort: "pages_desc"}, method: :get%>
-  <%= button_to "Sort by worst to best", books_path, params:{sort: "avg_rating_asc"}, method: :get%>
-  <%= button_to "Sort by best to worst", books_path, params:{sort: "avg_rating_desc"}, method: :get%>
-  <%= button_to "Sort by most reviewed", books_path, params:{sort: "num_reviews_desc"}, method: :get%>
-  <%= button_to "Sort by least reviewed", books_path, params:{sort: "num_reviews_asc"}, method: :get%>
-  <%= button_to "Add a new book", new_book_path, method: :get %>
+<section id="sort_buttons">
+  <%= button_to "Sort by Pages Ascending", books_path, params:{sort: "pages_asc"}, method: :get, class: "button"%>
+  <%= button_to "Sort by Pages Descending", books_path, params:{sort: "pages_desc"}, method: :get, class: "button"%>
+  <%= button_to "Sort by worst to best", books_path, params:{sort: "avg_rating_asc"}, method: :get, class: "button"%>
+  <%= button_to "Sort by best to worst", books_path, params:{sort: "avg_rating_desc"}, method: :get, class: "button"%>
+  <%= button_to "Sort by most reviewed", books_path, params:{sort: "num_reviews_desc"}, method: :get, class: "button"%>
+  <%= button_to "Sort by least reviewed", books_path, params:{sort: "num_reviews_asc"}, method: :get, class: "button"%>
+  <%= button_to "Add a new book", new_book_path, method: :get, class: "button" %>
 
 </section>
+
+<section class="books_container">
 
 <% @books.each do |book| %>
 <section id="book-<%= book.id %>" class="book">
   <h3 id="title-<%= book.id %>"><b>Title:</b> <%= link_to book.title, book_path(book) %> <br>
-  <img src="<%= book.image %>" alt="<% book.title %>"> <br>
+  <img src="<%= book.image %>" alt="<% book.title %>" width="400" height="500"> <br>
   <b>Rating:</b> <%=book.average_rating %>
   <b>Number of reviews:</b> <%= book.reviews.count %></h3>
   <p> <b>Page count: </b><%= book.page_count %></p>
   <p> <b>Publishing year: </b><%= book.year %></p>
-  <p><b>Authors:</b></p>
+  <p><b>Author(s):</b></p>
   <% book.authors.each do |author| %>
   <%= link_to author.name, author_path(author) %>
   <% end %>
 
 </section>
 <% end %>
+</section>
