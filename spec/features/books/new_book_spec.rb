@@ -53,7 +53,7 @@ RSpec.describe "book new page", type: :feature do
 
   it 'converts all author names to Title Case' do
     visit new_book_path
-    save_and_open_page
+    
     fill_in "book[title]", with: "book title"
     fill_in "book[page_count]", with: 100
     fill_in "book[year]", with: 2133
