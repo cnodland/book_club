@@ -45,7 +45,7 @@ RSpec.describe 'as a visitor', type: :feature do
         expect(page).to have_content('Average Rating: 3')
       end
 
-      save_and_open_page
+      
 
       within '#top_three' do
         top_3_titles = page.all('p')
