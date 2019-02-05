@@ -58,19 +58,6 @@ RSpec.describe 'When I visit a user show page' do
     expect(page.all('.review')[4]).to have_content(@review_5.title)
   end
 
-  it 'should be able to take us back to the unsorted reviews' do
-    visit user_path(@user)
-
-    click_button 'Sort by newest'
-
-    click_button 'Take me back'
-
-    expect(page.all('.review')[0]).to have_content(@review_4.title)
-    expect(page.all('.review')[1]).to have_content(@review_2.title)
-    expect(page.all('.review')[2]).to have_content(@review_3.title)
-    expect(page.all('.review')[3]).to have_content(@review_1.title)
-    expect(page.all('.review')[4]).to have_content(@review_5.title)
-  end
 
   it 'should be able to delete a review' do
     visit user_path(@user)

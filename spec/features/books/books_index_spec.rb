@@ -273,29 +273,6 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page.all('.book')[2]).to have_content("Good Book 1")
     end
 
-    xit 'can return to index page with a button' do
-      coelho= Author.create(name:'Paulo Coelho')
-      book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
-      book_2 = coelho.books.create(title:"Good Book 2", page_count: 150, year: 2000)
-      book_3 = coelho.books.create(title:"Good Book 3", page_count: 150, year: 2000)
-
-      user_1 = User.create(username:"User1")
-
-      Review.create(title:"Good review for book 1",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      Review.create(title:"Good review for book 2",review_text: "Loved it", rating: 5, book: book_1, user: user_1 )
-      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_1, user: user_1 )
-      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 3, book: book_2, user: user_1 )
-      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_2, user: user_1 )
-      Review.create(title:"Good review for book 3",review_text: "Loved it", rating: 1, book: book_3, user: user_1 )
-      visit books_path
-      click_button 'Sort by least reviewed'
-      click_button 'Take me home'
-
-      expect(page.all('.book')[0]).to_not have_content("Good Book 3")
-      expect(page.all('.book')[1]).to have_content("Good Book 2")
-      expect(page.all('.book')[2]).to_not have_content("Good Book 1")
-    end
-
     it 'can click on book titles and be taken to their show page' do
       coelho= Author.create(name:'Paulo Coelho')
       book_1 = coelho.books.create(title:"Good Book 1", page_count: 200, year: 1988)
